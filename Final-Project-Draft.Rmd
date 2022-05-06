@@ -5,11 +5,6 @@ date: "5/6/2022"
 output: pdf_document
 ---
 
-```{r}
-library(readr)
-lanadelrey<-read.csv("lanadelrey.csv")
-```
-
 
 # Introduction
 
@@ -39,7 +34,6 @@ Each row of text or token will be associated with a one of the six main sentimen
 
 ![The Sentiment Wheel](C:/users/chris/downloads/The_Sentiment_Wheel.png)
 
-As noted, I will use tidytext to do the text clean up and analysis. Once I have converted each lyric line into a token/tidytext format, I will then create a distribution chart of the different sentiments. 
 
 ## Problems, Challenges, and Resolutions
 
@@ -62,18 +56,26 @@ The project had to scale back and focus on one album only. Initially, I did not 
 
 ## Topic 1: R Markdown and describing the data.
 
-R Markdown dig into the data to help explain the project. 
+R Markdown will be used to summarize the data.
+
+```{r}
+library(readr)
+lanadelrey<-read.csv("lanadelrey.csv")
+```
+
 
 ```{r}
 dim(lanadelrey)
 ```
-As shown, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. 
+```{r}
+names(table(lanadelrey$Song))
+```
 
 ```{r}
 names(lanadelrey)
 
 ```
-There are 10 variables in this data set; however, since this is a sentiment analysis, the applicable variables the project will analyze are the six emotions: Sad, Mad, Scared, Peaceful, Powerful, and Joyful. According to the Wheel of Sentiment, while these are the main emotions, the contain a multitude of other more complex emotions. For example, feelings of "rage" or "jealousy" can be classified as "Mad." 
+As show, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. There are 10 variables in this data set; however, since this is a sentiment analysis, the applicable variables the project will analyze are the six emotions: Sad, Mad, Scared, Peaceful, Powerful, and Joyful. According to the Wheel of Sentiment, while these are the main emotions, the contain a multitude of other more complex emotions. For example, feelings of "rage" or "jealousy" can be classified as "Mad." 
 
 ```{r}
 typeof(lanadelrey$Sad)
@@ -102,7 +104,46 @@ barplot(Sentiments,
      col = "darkblue",
         horiz = FALSE)
 ```
-The frequency of sentiment on *NFR!* is as follows: Joyful (185), Sad (123), Peaceful (78), Scared (68), Powerful (58), and Mad (33). 
+The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared (68), Peaceful (78), Powerful (58), and Joyful (185). As shown below, sentiment is further broken down by the 14 songs to show the how many times a sentiment appears in a song. 
+
+```{r}
+sadtable<-table(lanadelrey$Song, lanadelrey$Sad)
+madtable<-table(lanadelrey$Song, lanadelrey$Mad)
+scaredtable<-table(lanadelrey$Song, lanadelrey$Scared)
+peacefultable<-table(lanadelrey$Song, lanadelrey$Peaceful)
+powerfultable<-table(lanadelrey$Song, lanadelrey$Powerful)
+joyfultable<-table(lanadelrey$Song, lanadelrey$Joyful)
+```
+
+```{r}
+barplot(sadtable[,2],
+        horiz = TRUE,
+        col = "darkblue",
+        las = 1)
+barplot(madtable[,2],
+        horiz = TRUE,
+        col = "darkred",
+        las = 1)
+barplot(scaredtable[,2],
+        horiz = TRUE,
+        col = "black",
+        las = 1)
+barplot(peacefultable[,2],
+        horiz = TRUE,
+        col = "pink",
+        las = 1)
+barplot(powerfultable[,2],
+        horiz = TRUE,
+        col = "green",
+        las = 1)
+barplot(joyfultable[,2],
+        horiz = TRUE,
+        col = "yellow",
+        las = 1)
+```
+
+
+
 
 ## Topic 2: Github
 The project will be shared in the Github repository.Additionally, I am using a few learning tutorials from other users in Github to deal with the text analysis.
