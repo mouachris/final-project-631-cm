@@ -123,22 +123,22 @@ joyfultable<-table(lanadelrey$Song, lanadelrey$Joyful)
 barplot(sadtable[,2],
         main = "Times 'Sad' sentiment appears in each song",
         horiz = TRUE,
-        col = "darkblue",
+        col = "violet",
         las = 1)
 barplot(madtable[,2],
         main = "Times 'Mad' sentiment appears in each song",
         horiz = TRUE,
-        col = "darkred",
+        col = "red",
         las = 1)
 barplot(scaredtable[,2],
         main = "Times 'Scared' sentiment appears in each song",
         horiz = TRUE,
-        col = "black",
+        col = "orange",
         las = 1)
 barplot(peacefultable[,2],
         main = "Times 'Peaceful' sentiment appears in each song",
         horiz = TRUE,
-        col = "pink",
+        col = "blue",
         las = 1)
 barplot(powerfultable[,2],
         main = "Times 'Powerful' sentiment appears in each song",
