@@ -151,6 +151,42 @@ barplot(joyfultable[,2],
         col = "yellow",
         las = 1)
 ```
+### Sentiment Distribution 
+
+TBD
+
+```{r}
+hist(sadtable[,2],
+     main = "Distribution of 'Sad' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "violet")
+hist(madtable[,2],
+     main = "Distribution of 'Mad' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "red")
+hist(scaredtable[,2],
+     main = "Distribution of 'Scared' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "orange")
+hist(peacefultable[,2],
+     main = "Distribution of 'Peaceful' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "blue")
+hist(powerfultable[,2],
+     main = "Distribution of 'Powerful' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "green")
+hist(joyfultable[,2],
+     main = "Distribution of 'Yellow' Sentiment",
+     xlab = "Lines of Lyric",
+     ylab = "Number of Songs",
+     col = "yellow")
+```
 
 
 ## Topic 4: Logistic Regression
