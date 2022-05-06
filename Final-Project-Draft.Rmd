@@ -10,27 +10,27 @@ output: pdf_document
 
 ## What
 
-What this project covers is a text analysis of Lana Del Rey song lyrics. The goal of this project will uncover a sentiment analysis of Lana's lyrics to paint a picture of her artistic evolution and draw correlation between the emotional identity of her lyrics and their respective album commercial success and reception. This project will attempt to cover at least three albums: Born to Die, Ultraviolence, and NFR!. 
+What this project covers is a text analysis of Lana Del Rey song lyrics in her most critically acclaimed album *Norman Fucking Rockwell!* (*NFR!*). The goal of this project will uncover a sentiment analysis of Lana's lyrics to paint a picture of her album's artistry and answer the question: **"How does the emotional/sentimental state of the album contribute to *NFR!*'s artistic and cultural commentary?"** That is the question I am attempting to answer, and results from the text analysis will inform a final opinion in the conclusion. 
 
 ## Why
 
 I chose this project scope for a few reasons: 
 
-1) In the field of marketing, understanding the consumer's emotional psychology is important in construcing user journeys that help guide and inform sales and marketing campaign. I want to explore that subject but with a personal muse I find interesting. Doing a text to sentiment analysis will help me accomplish this. 
+1) In the field of marketing, understanding the consumer's emotional psychology is important in constructing user journeys that help guide and inform sales and marketing campaign. I want to explore that subject but with a personal muse I find interesting. Doing a text to sentiment analysis will help me accomplish this. 
 
 2) It is also in my interest to apply a statistical lens to something that is more categorical in nature. That will stretch my statistics understanding while keeping it within a relatively comfortable understanding of the topic. 
 
 ## How
 
-First off, I will use a lyric website to generate the lyrics. According to 'Text Mining with R', each stanza can be called a character vector that will be analyzed. Therefore, I will employ tidytext and forcat for the text analysis/mining, dplyr for the data framing, and application of statistical concepts of distribution and inference for the analysis.
+First off, I used a lyric website (lyricfind.com) to generate the lyrics. Then I manually collected data, with each lyric line being an observation. Next, I used R and GitHub to organize, explore, and summarize the data. Finally, this project incorporated concepts on data summary, graphical representation, and regression to analyze the data. 
 
 # Body
 
 ## Why is it important?
 
-Text analysis is important because it is useful "method for turning large amounts of unstructured data into something that can be understood and analysed."^1 This method helps to find meaning out of written communications, like song lyrics or a series of tweets from consumers. Analyzing that text data and uncovering sentiment can help businesses better understand the user journey and design an experience for customer conversion. 
+Text analysis is important because it is useful "method for turning large amounts of unstructured data into something that can be understood and analysed." This method helps to find meaning out of written communications, like song lyrics or a series of tweets from consumers. Analyzing that text data and uncovering sentiment can help businesses better understand the user journey and design an experience for customer conversion. 
 
-Each row of text or token will be associated with a one of the six main sentiments from this wheel. The main six are at the inner center of the circle.  
+Each row of text will be associated with a one or more of the six main sentiments from The Sentiment Wheel (see Figure 1). The main six are at the inner center of the circle: Sad, Mad, Scared, Peaceful, Powerful, and Peaceful.   
 
 ![The Sentiment Wheel](C:/users/chris/downloads/The_Sentiment_Wheel.png)
 
@@ -41,12 +41,12 @@ I've encountered a few challenges in exploring this project:
 
 1) How to structure the unstructured text data? 
 
-I am attempting to just use the simple data structure the tidytext tutorial provides, via using the 'janeaustinr'package. However, that file already exists in a package that can be brought over to R easily. My challenge is with figuring out how to "package" the album lyrics. My original intent was to use tidytext to structure the text and diplyr to structure and clean the text. However, upon more research and discussion with peers, the method to do text analysis will require technical skills outside the scope of this project. As such, this project will use Excel and its .csv file to organize the text data.
+I initially attempted to structure the data with tidytext, using the 'janeaustinr' tutorial package as a guide. However, that file already exists in a package that can be brought over to R easily. My challenge was with figuring out how to "package" the album lyrics. My original intent was to use tidytext and diplyr to structure and clean the text. However, upon more research and discussion with peers, the method to do text analysis will require technical skills and time commitment outside the scope of this project. As such, this project will use Excel and its .csv file to organize the text data.
 
 
 2) How to assign sentiment to the text?
 
-Another challenge is figuring out how to assign the sentiment to the lines of text. At the moment, I am unsure of the approach. However, the project may have to do a manual qualitative assessment of the lyrics and assign sentiment that way before the whole data set is formatted. I would like to avoid my own personal bias when assigning/inferring sentiment to the lyrics, but that will be a limitation I will acknowledge in the final project. 
+Another challenge was figuring out how to assign the sentiment to the lines of text. At the moment, I am unsure of the approach. However, the project instead conducted a manual qualitative assessment of the lyrics and assigned sentiment based on word association. For example, if the lyric mentioned words like "happy", "love" or "party", that lyric would be assigned a "Joyful" sentiment. Thus, this project recognizes doing so adds a layer of personal bias. While I would like to avoid my own personal bias when assigning/inferring sentiment to the lyrics, but that is be a limitation in this project. In an ideal approach, a script or software would be able to scrub the lyrics.
 
 3) Open issue:
 
@@ -54,9 +54,9 @@ The project had to scale back and focus on one album only. Initially, I did not 
 
 # Topics from Class
 
-## Topic 1: R Markdown and describing the data.
+## Topics 1 and 2: R Markdown to summarize data, and GitHub to develop repository.
 
-R Markdown will be used to summarize the data.
+R Markdown is used to import the data and summarize it. With GitHub, this project is available for others to view. Because this is a topic that touches pop culture, it may also be of interest to those outside of statistics. GitHub's public settings will allow for me to share these findings and final opinion with other individuals who have an interest in Lana Del Rey. 
 
 ```{r}
 library(readr)
@@ -75,7 +75,7 @@ names(table(lanadelrey$Song))
 names(lanadelrey)
 
 ```
-As show, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. There are 10 variables in this data set; however, since this is a sentiment analysis, the applicable variables the project will analyze are the six emotions: Sad, Mad, Scared, Peaceful, Powerful, and Joyful. According to the Wheel of Sentiment, while these are the main emotions, the contain a multitude of other more complex emotions. For example, feelings of "rage" or "jealousy" can be classified as "Mad." 
+As show, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. There are 10 variables in this data set; however, since this is a sentiment analysis, the applicable variables the project will analyze are the six emotions: Sad, Mad, Scared, Peaceful, Powerful, and Joyful. According to The Sentiment Wheel, while these are the main emotions, they contain a multitude of other more complex emotions. For example, feelings of "rage" or "jealousy" can be classified as "Mad." 
 
 ```{r}
 typeof(lanadelrey$Sad)
@@ -104,7 +104,11 @@ barplot(Sentiments,
      col = "darkblue",
         horiz = FALSE)
 ```
-The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared (68), Peaceful (78), Powerful (58), and Joyful (185). As shown below, sentiment is further broken down by the 14 songs to show the how many times a sentiment appears in a song. 
+The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared (68), Peaceful (78), Powerful (58), and Joyful (185). 
+
+## Topic 3: Distribution of Data
+
+The text analysis relates to Chapter 2 from the class textbook on Summarizing Data, specifically categorical data. Although the data is not numerical, the project will still look at the "distribution" of sentiment by looking at sentiment frequency.
 
 ```{r}
 sadtable<-table(lanadelrey$Song, lanadelrey$Sad)
@@ -148,14 +152,6 @@ barplot(joyfultable[,2],
         las = 1)
 ```
 
-
-
-
-## Topic 2: Github
-The project will be shared in the Github repository.Additionally, I am using a few learning tutorials from other users in Github to deal with the text analysis.
-
-## Topic 3: Text Analysis 
-The text analysis relates to Chapter 2 from the class textbook on Summarizing Data, specifically categorical data. Although the data is not numerical, the project will still look at the "distribution" of sentiment by looking at sentiment frequency.
 
 ## Topic 4: Logistic Regression
 Once the distribution of the sentiment has been generated, this project will use logistic regression to understand the effect of lyric sentiment on the song/album's commercial success and reception (this information will be pulled from Billboard.com)
