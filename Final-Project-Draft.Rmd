@@ -5,9 +5,11 @@ date: "5/6/2022"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(readr)
+lanadelrey<-read.csv("lanadelrey.csv")
 ```
+
 
 # Introduction
 
@@ -33,7 +35,7 @@ First off, I will use a lyric website to generate the lyrics. According to 'Text
 
 Text analysis is important because it is useful "method for turning large amounts of unstructured data into something that can be understood and analysed."^1 This method helps to find meaning out of written communications, like song lyrics or a series of tweets from consumers. Analyzing that text data and uncovering sentiment can help businesses better understand the user journey and design an experience for customer conversion. 
 
-ach row of text or token will be associated with a one of the six main sentiments from this wheel. The main six are at the inner center of the circle.  
+Each row of text or token will be associated with a one of the six main sentiments from this wheel. The main six are at the inner center of the circle.  
 
 ![The Sentiment Wheel](C:/users/chris/downloads/The_Sentiment_Wheel.png)
 
@@ -62,23 +64,23 @@ The project had to scale back and focus on one album only. Initially, I did not 
 
 R Markdown dig into the data to help explain the project. 
 
-```{r, eval=FALSE}
+```{r}
 dim(lanadelrey)
 ```
-As show, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. 
+As shown, there are 643 observations - these will represent each line of lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. 
 
-```{r, eval=FALSE}
+```{r}
 names(lanadelrey)
 
 ```
 There are 10 variables in this data set; however, since this is a sentiment analysis, the applicable variables the project will analyze are the six emotions: Sad, Mad, Scared, Peaceful, Powerful, and Joyful. According to the Wheel of Sentiment, while these are the main emotions, the contain a multitude of other more complex emotions. For example, feelings of "rage" or "jealousy" can be classified as "Mad." 
 
-```{r, eval=FALSE}
+```{r}
 typeof(lanadelrey$Sad)
 ```
 These are also categorical, non-ordinal variables. Binary code will represent whether any of the sentiments exist in a line of lyric. It is also possible a line of lyric may contain more than one sentiment. "1" will represent the presence of the sentiment, and "0" will represent the absence. Now, we will look at the numerical frequency of each sentiment. 
 
-```{r, eval=FALSE}
+```{r}
 sum(lanadelrey$Sad)
 sum(lanadelrey$Mad)
 sum(lanadelrey$Scared)
@@ -86,12 +88,12 @@ sum(lanadelrey$Peaceful)
 sum(lanadelrey$Powerful)
 sum(lanadelrey$Joyful)
 ```
-```{r, eval=FALSE}
+```{r}
 Sentiments<-c(123, 33, 68, 78, 58, 185)
 ```
 
 
-```{r Sentiments, eval=FALSE}
+```{r}
 barplot(Sentiments,
        main = "NFR! - Sentiment Comparison",
        xlab = "Sentiment",
