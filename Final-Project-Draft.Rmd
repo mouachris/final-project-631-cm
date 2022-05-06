@@ -86,12 +86,12 @@ sum(lanadelrey$Peaceful)
 sum(lanadelrey$Powerful)
 sum(lanadelrey$Joyful)
 ```
-```{r}
+```{r, eval=FALSE}
 Sentiments<-c(123, 33, 68, 78, 58, 185)
 ```
 
 
-```{r, eval=FALSE}
+```{r Sentiments, eval=FALSE}
 barplot(Sentiments,
        main = "NFR! - Sentiment Comparison",
        xlab = "Sentiment",
