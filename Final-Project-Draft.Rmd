@@ -151,6 +151,8 @@ barplot(joyfultable[,2],
         col = "yellow",
         las = 1)
 ```
+When looking at the sentiment, which song are the most of each? 
+
 ### Sentiment Distribution 
 
 TBD
@@ -182,7 +184,7 @@ hist(powerfultable[,2],
      ylab = "Number of Songs",
      col = "green")
 hist(joyfultable[,2],
-     main = "Distribution of 'Yellow' Sentiment",
+     main = "Distribution of 'Joyful' Sentiment",
      xlab = "Lines of Lyric",
      ylab = "Number of Songs",
      col = "yellow")
