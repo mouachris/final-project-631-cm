@@ -28,9 +28,9 @@ First off, I used a lyric website (lyricfind.com) to generate the lyrics. Then I
 
 ## Why is it important?
 
-Text analysis is important because it is useful "method for turning large amounts of unstructured data into something that can be understood and analysed." This method helps to find meaning out of written communications, like song lyrics or a series of tweets from consumers. Analyzing that text data and uncovering sentiment can help businesses better understand the user journey and design an experience for customer conversion. 
+Text analysis is important because it is useful method for turning large amounts of unstructured data into something that can be understood and analyzed. This method helps to find meaning out of written communications, like song lyrics or a series of tweets from consumers. Analyzing that text data and uncovering sentiment can help businesses better understand the user journey and design an experience for customer conversion. 
 
-Each row of text will be associated with a one or more of the six main sentiments from The Sentiment Wheel (see Figure 1). The main six are at the inner center of the circle: Sad, Mad, Scared, Peaceful, Powerful, and Peaceful.   
+Each row of text will be associated with a one or more of the six main sentiments from The Sentiment Wheel (see Figure 1). The main six are at the inner center of the circle: Sad, Mad, Scared, Peaceful, Powerful, and Joyful.   
 
 ![The Sentiment Wheel](C:/users/chris/downloads/The_Sentiment_Wheel.png)
 
@@ -80,6 +80,8 @@ As show, there are 643 observations - these will represent each line of lyric sp
 ```{r}
 typeof(lanadelrey$Sad)
 ```
+## Topic 3: Cleaning and Loading Data
+
 These are also categorical, non-ordinal variables. Binary code will represent whether any of the sentiments exist in a line of lyric. It is also possible a line of lyric may contain more than one sentiment. "1" will represent the presence of the sentiment, and "0" will represent the absence. Now, we will look at the numerical frequency of each sentiment. 
 
 ```{r}
@@ -104,9 +106,9 @@ barplot(Sentiments,
      col = "darkblue",
         horiz = FALSE)
 ```
-The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared (68), Peaceful (78), Powerful (58), and Joyful (185). 
+The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared (68), Peaceful (78), Powerful (58), and Joyful (185). The album is largely Joyful, followed by Sad.
 
-## Topic 3: Distribution of Data
+## Topic 4 and 5: Analysis of Data with Barplots and Distribution Charts
 
 The text analysis relates to Chapter 2 from the class textbook on Summarizing Data, specifically categorical data. Although the data is not numerical, the project will still look at the "distribution" of sentiment by looking at sentiment frequency.
 
@@ -119,43 +121,57 @@ powerfultable<-table(lanadelrey$Song, lanadelrey$Powerful)
 joyfultable<-table(lanadelrey$Song, lanadelrey$Joyful)
 ```
 
+
+
 ```{r}
 barplot(sadtable[,2],
         main = "Times 'Sad' sentiment appears in each song",
         horiz = TRUE,
         col = "violet",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 barplot(madtable[,2],
         main = "Times 'Mad' sentiment appears in each song",
         horiz = TRUE,
         col = "red",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 barplot(scaredtable[,2],
         main = "Times 'Scared' sentiment appears in each song",
         horiz = TRUE,
         col = "orange",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 barplot(peacefultable[,2],
         main = "Times 'Peaceful' sentiment appears in each song",
         horiz = TRUE,
         col = "blue",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 barplot(powerfultable[,2],
         main = "Times 'Powerful' sentiment appears in each song",
         horiz = TRUE,
         col = "green",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 barplot(joyfultable[,2],
         main = "Times 'Joyful' sentiment appears in each song",
         horiz = TRUE,
         col = "yellow",
-        las = 1)
+        las = 1,
+        cex.names = .7)
 ```
-When looking at the sentiment, which song are the most of each? 
+ 
+## How often does a sentiment appear by songs?
 
-### Sentiment Distribution 
+According to the analysis:
 
-TBD
+*Sad: this emotion appears the most in the song 'Cinnamon Girl'
+*Mad: this emotion appears the most in the song 'Fuck It, I Love You'
+*Scared: this emotion appears the most the song 'Hope is a Dangerous Thing for a Woman Like Me to Have But I Have it'
+*Peaceful: this emotion appears equally the most in the songs 'Fuck It, I Love You' and 'Doin Time'
+*Powerful: this emotion appears the most in the song 'Mariners Apartment Complex'
+*Joyful: this emotion appears the most in the song 'Fuck It, I Love You'
 
 ```{r}
 hist(sadtable[,2],
@@ -189,13 +205,10 @@ hist(joyfultable[,2],
      ylab = "Number of Songs",
      col = "yellow")
 ```
+## How often do songs feature a sentiment?
 
+According to the analysis, all the Sentiment distribution charts are right skewed, with the majority of songs with fewer lines of lyrics containing the sentiment. Only a few number of songs contain many lines of lyrics pertaining to a particular sentiment. 
 
-## Topic 4: Logistic Regression
-Once the distribution of the sentiment has been generated, this project will use logistic regression to understand the effect of lyric sentiment on the song/album's commercial success and reception (this information will be pulled from Billboard.com)
-
-## Topic 5: Cleaning text data
-Tidytext will allow for cleaning the text data by removing "stop words" and punctuation. 
 
 # Conclusion
 
