@@ -5,11 +5,7 @@
 What this project covers is a text analysis of Lana Del Rey song lyrics
 in her most critically acclaimed album *Norman Fucking Rockwell!*
 (*NFR!*). The goal of this project will uncover a sentiment analysis of
-Lana’s lyrics to paint a picture of her album’s artistry and answer the
-question: **“How does the emotional/sentimental state of the album
-contribute to *NFR!*’s artistic and cultural commentary?”** That is the
-question I am attempting to answer, and results from the text analysis
-will inform a final opinion in the conclusion.
+Lana’s lyrics to paint a picture of her album’s artistry.
 
 ## Why
 
@@ -38,9 +34,9 @@ summary, graphical representation, and regression to analyze the data.
 
 ## Why is it important?
 
-Text analysis is important because it is useful “method for turning
-large amounts of unstructured data into something that can be understood
-and analysed.” This method helps to find meaning out of written
+Text analysis is important because it is useful method for turning large
+amounts of unstructured data into something that can be understood and
+analyzed. This method helps to find meaning out of written
 communications, like song lyrics or a series of tweets from consumers.
 Analyzing that text data and uncovering sentiment can help businesses
 better understand the user journey and design an experience for customer
@@ -49,7 +45,7 @@ conversion.
 Each row of text will be associated with a one or more of the six main
 sentiments from The Sentiment Wheel (see Figure 1). The main six are at
 the inner center of the circle: Sad, Mad, Scared, Peaceful, Powerful,
-and Peaceful.
+and Joyful.
 
 ![The Sentiment Wheel](C:/users/chris/downloads/The_Sentiment_Wheel.png)
 
@@ -112,17 +108,25 @@ in Lana Del Rey.
 
     names(table(lanadelrey$Song))
 
-    ##  [1] "Bartender"                                                           "California"                                                         
-    ##  [3] "Cinnamon Girl"                                                       "Doin Time"                                                          
-    ##  [5] "Fuck It I Love You"                                                  "Happiness Is A Butterfly"                                           
-    ##  [7] "Hope Is A Dangerous Thing For A Woman Like Me To Have But I have It" "How to Disappear"                                                   
-    ##  [9] "Love Song"                                                           "Mariners Apartment Complex"                                         
-    ## [11] "Norman Fucking Rockwell"                                             "The Greatest"                                                       
-    ## [13] "The Next Best American Record"                                       "Venice Bitch"
+    ##  [1] "Bartender"                                                          
+    ##  [2] "California"                                                         
+    ##  [3] "Cinnamon Girl"                                                      
+    ##  [4] "Doin Time"                                                          
+    ##  [5] "Fuck It I Love You"                                                 
+    ##  [6] "Happiness Is A Butterfly"                                           
+    ##  [7] "Hope Is A Dangerous Thing For A Woman Like Me To Have But I have It"
+    ##  [8] "How to Disappear"                                                   
+    ##  [9] "Love Song"                                                          
+    ## [10] "Mariners Apartment Complex"                                         
+    ## [11] "Norman Fucking Rockwell"                                            
+    ## [12] "The Greatest"                                                       
+    ## [13] "The Next Best American Record"                                      
+    ## [14] "Venice Bitch"
 
     names(lanadelrey)
 
-    ##  [1] "Lyric"        "Song"         "Track.Number" "Album"        "Sad"          "Mad"          "Scared"       "Peaceful"     "Powerful"     "Joyful"
+    ##  [1] "Lyric"        "Song"         "Track.Number" "Album"        "Sad"          "Mad"          "Scared"       "Peaceful"    
+    ##  [9] "Powerful"     "Joyful"
 
 As show, there are 643 observations - these will represent each line of
 lyric spanning across the 14 songs in *Norman Fucking Rockwell!*. There
@@ -136,6 +140,8 @@ multitude of other more complex emotions. For example, feelings of
     typeof(lanadelrey$Sad)
 
     ## [1] "integer"
+
+## Topic 3: Cleaning and Loading Data
 
 These are also categorical, non-ordinal variables. Binary code will
 represent whether any of the sentiments exist in a line of lyric. It is
@@ -177,16 +183,19 @@ absence. Now, we will look at the numerical frequency of each sentiment.
          col = "darkblue",
             horiz = FALSE)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-8-1.png) The
+![](README_files/figure-markdown_strict/unnamed-chunk-25-1.png) The
 frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33),
-Scared (68), Peaceful (78), Powerful (58), and Joyful (185).
+Scared (68), Peaceful (78), Powerful (58), and Joyful (185). The album
+is largely Joyful, followed by Sad.
 
-## Topic 3: Distribution of Data
+## Topic 4 and 5: Analysis of Data with Barplots and Distribution Charts
 
 The text analysis relates to Chapter 2 from the class textbook on
 Summarizing Data, specifically categorical data. Although the data is
 not numerical, the project will still look at the “distribution” of
-sentiment by looking at sentiment frequency.
+sentiment by looking at sentiment frequency.The bar plots will allow
+comparison between sentiment by song, and the distribution charts will
+dive into how often sentiments show up by lines of lyric.
 
     sadtable<-table(lanadelrey$Song, lanadelrey$Sad)
     madtable<-table(lanadelrey$Song, lanadelrey$Mad)
@@ -199,54 +208,68 @@ sentiment by looking at sentiment frequency.
             main = "Times 'Sad' sentiment appears in each song",
             horiz = TRUE,
             col = "violet",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-27-1.png)
 
     barplot(madtable[,2],
             main = "Times 'Mad' sentiment appears in each song",
             horiz = TRUE,
             col = "red",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-2.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-27-2.png)
 
     barplot(scaredtable[,2],
             main = "Times 'Scared' sentiment appears in each song",
             horiz = TRUE,
             col = "orange",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-3.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-27-3.png)
 
     barplot(peacefultable[,2],
             main = "Times 'Peaceful' sentiment appears in each song",
             horiz = TRUE,
             col = "blue",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-4.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-27-4.png)
 
     barplot(powerfultable[,2],
             main = "Times 'Powerful' sentiment appears in each song",
             horiz = TRUE,
             col = "green",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-5.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-27-5.png)
 
     barplot(joyfultable[,2],
             main = "Times 'Joyful' sentiment appears in each song",
             horiz = TRUE,
             col = "yellow",
-            las = 1)
+            las = 1,
+            cex.names = .7)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-6.png) When
-looking at the sentiment, which song are the most of each?
+![](README_files/figure-markdown_strict/unnamed-chunk-27-6.png)
 
-### Sentiment Distribution
+## How often does a sentiment appear by songs?
 
-TBD
+According to the analysis:
+
+-Sad: this emotion appears the most in the song ‘Cinnamon Girl’ -Mad:
+this emotion appears the most in the song ‘Fuck It, I Love You’ -Scared:
+this emotion appears the most the song ‘Hope is a Dangerous Thing for a
+Woman Like Me to Have But I Have it’ -Peaceful: this emotion appears
+equally the most in the songs ‘Fuck It, I Love You’ and ‘Doin Time’
+-Powerful: this emotion appears the most in the song ‘Mariners Apartment
+Complex’ -Joyful: this emotion appears the most in the song ‘Fuck It, I
+Love You’
 
     hist(sadtable[,2],
          main = "Distribution of 'Sad' Sentiment",
@@ -254,7 +277,7 @@ TBD
          ylab = "Number of Songs",
          col = "violet")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-1.png)
 
     hist(madtable[,2],
          main = "Distribution of 'Mad' Sentiment",
@@ -262,7 +285,7 @@ TBD
          ylab = "Number of Songs",
          col = "red")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-2.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-2.png)
 
     hist(scaredtable[,2],
          main = "Distribution of 'Scared' Sentiment",
@@ -270,7 +293,7 @@ TBD
          ylab = "Number of Songs",
          col = "orange")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-3.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-3.png)
 
     hist(peacefultable[,2],
          main = "Distribution of 'Peaceful' Sentiment",
@@ -278,7 +301,7 @@ TBD
          ylab = "Number of Songs",
          col = "blue")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-4.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-4.png)
 
     hist(powerfultable[,2],
          main = "Distribution of 'Powerful' Sentiment",
@@ -286,7 +309,7 @@ TBD
          ylab = "Number of Songs",
          col = "green")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-5.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-5.png)
 
     hist(joyfultable[,2],
          main = "Distribution of 'Joyful' Sentiment",
@@ -294,22 +317,43 @@ TBD
          ylab = "Number of Songs",
          col = "yellow")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-6.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-28-6.png)
 
-## Topic 4: Logistic Regression
+## How often do songs feature a sentiment?
 
-Once the distribution of the sentiment has been generated, this project
-will use logistic regression to understand the effect of lyric sentiment
-on the song/album’s commercial success and reception (this information
-will be pulled from Billboard.com)
-
-## Topic 5: Cleaning text data
-
-Tidytext will allow for cleaning the text data by removing “stop words”
-and punctuation.
+According to the analysis, all the Sentiment distribution charts are
+right skewed, with the majority of songs with fewer lines of lyrics
+containing the sentiment. Only a few number of songs contain many lines
+of lyrics pertaining to a particular sentiment.
 
 # Conclusion
 
-At this time, I do feel this project will advance my knowledge and
-curiosity around text analysis. I was excited that R had the capability
-to do that type of analysis.
+This project advanced my knowledge and curiosity around text analysis.
+First, it was a realization that there is a lot more that goes into the
+data scraping and framing when it comes to a text analysis. I even
+learned from a classmate that you could potentially write an R Script to
+automate that process. Additionally, I picked up some more reading with
+the book “Text Mining with R” by David Robinson and Julia Silge.
+Although I was not able to apply it, I did pick up conceptual
+understanding to the frame work that is needed to conduct this type of
+analysis, such as “stop words” and “stemming” - which is the process of
+eliminating redundant words and trimming text strings to its most
+concise valuable text.
+
+I also wanted to conduct a regression on the data to determine whether
+certain variables in the data set had any type of relationship. I was
+not able to get to that because I realized the data file was not
+structured in a way that could allow for that type of analysis. At that
+point, it was too late to modify the data file and reload. With more
+time, I would redo the data scraping to ensure the file had the data
+points needed for that.
+
+With more time as well, I would employ Shiny to visualize this data set
+on a web app directly from R. Doing so would make this analysis more
+accessible and consumable for other fans of Lana Del Rey. My biggest
+takeaway from the final project is that there are many tools available
+to carry out a successful text analysis. Tidytext and diplyr to scrape
+and frame the data, R to conduct the statistical analysis, and a
+visualization tool like Shiny to convert that to an interactive
+platform. At the end of this project, I have a better idea of the
+ecosystem and will likely explore these together in the near future.
