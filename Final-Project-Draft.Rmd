@@ -10,7 +10,7 @@ output: pdf_document
 
 ## What
 
-What this project covers is a text analysis of Lana Del Rey song lyrics in her most critically acclaimed album *Norman Fucking Rockwell!* (*NFR!*). The goal of this project will uncover a sentiment analysis of Lana's lyrics to paint a picture of her album's artistry and answer the question: **"How does the emotional/sentimental state of the album contribute to *NFR!*'s artistic and cultural commentary?"** That is the question I am attempting to answer, and results from the text analysis will inform a final opinion in the conclusion. 
+What this project covers is a text analysis of Lana Del Rey song lyrics in her most critically acclaimed album *Norman Fucking Rockwell!* (*NFR!*). The goal of this project will uncover a sentiment analysis of Lana's lyrics to paint a picture of her album's artistry.
 
 ## Why
 
@@ -110,7 +110,7 @@ The frequency of sentiment on *NFR!* is as follows: Sad (123), Mad (33), Scared 
 
 ## Topic 4 and 5: Analysis of Data with Barplots and Distribution Charts
 
-The text analysis relates to Chapter 2 from the class textbook on Summarizing Data, specifically categorical data. Although the data is not numerical, the project will still look at the "distribution" of sentiment by looking at sentiment frequency.
+The text analysis relates to Chapter 2 from the class textbook on Summarizing Data, specifically categorical data. Although the data is not numerical, the project will still look at the "distribution" of sentiment by looking at sentiment frequency.The bar plots will allow comparison between sentiment by song, and the distribution charts will dive into how often sentiments show up by lines of lyric. 
 
 ```{r}
 sadtable<-table(lanadelrey$Song, lanadelrey$Sad)
@@ -166,12 +166,12 @@ barplot(joyfultable[,2],
 
 According to the analysis:
 
-*Sad: this emotion appears the most in the song 'Cinnamon Girl'
-*Mad: this emotion appears the most in the song 'Fuck It, I Love You'
-*Scared: this emotion appears the most the song 'Hope is a Dangerous Thing for a Woman Like Me to Have But I Have it'
-*Peaceful: this emotion appears equally the most in the songs 'Fuck It, I Love You' and 'Doin Time'
-*Powerful: this emotion appears the most in the song 'Mariners Apartment Complex'
-*Joyful: this emotion appears the most in the song 'Fuck It, I Love You'
+-Sad: this emotion appears the most in the song 'Cinnamon Girl'
+-Mad: this emotion appears the most in the song 'Fuck It, I Love You'
+-Scared: this emotion appears the most the song 'Hope is a Dangerous Thing for a Woman Like Me to Have But I Have it'
+-Peaceful: this emotion appears equally the most in the songs 'Fuck It, I Love You' and 'Doin Time'
+-Powerful: this emotion appears the most in the song 'Mariners Apartment Complex'
+-Joyful: this emotion appears the most in the song 'Fuck It, I Love You'
 
 ```{r}
 hist(sadtable[,2],
@@ -205,6 +205,7 @@ hist(joyfultable[,2],
      ylab = "Number of Songs",
      col = "yellow")
 ```
+
 ## How often do songs feature a sentiment?
 
 According to the analysis, all the Sentiment distribution charts are right skewed, with the majority of songs with fewer lines of lyrics containing the sentiment. Only a few number of songs contain many lines of lyrics pertaining to a particular sentiment. 
@@ -212,4 +213,8 @@ According to the analysis, all the Sentiment distribution charts are right skewe
 
 # Conclusion
 
-At this time, I do feel this project will advance my knowledge and curiosity around text analysis. I was excited that R had the capability to do that type of analysis. 
+This project advanced my knowledge and curiosity around text analysis. First, it was a realization that there is a lot more that goes into the data scraping and framing when it comes to a text analysis. I even learned from a classmate that you could potentially write an R Script to automate that process. Additionally, I picked up some more reading with the book "Text Mining with R" by David Robinson and Julia Silge. Although I was not able to apply it, I did pick up conceptual understanding to the frame work that is needed to conduct this type of analysis, such as "stop words" and "stemming" - which is the process of eliminating redundant words and trimming text strings to its most concise valuable text. 
+
+I also wanted to conduct a regression on the data to determine whether certain variables in the data set had any type of relationship. I was not able to get to that because I realized the data file was not structured in a way that could allow for that type of analysis. At that point, it was too late to modify the data file and reload. With more time, I would redo the data scraping to ensure the file had the data points needed for that. 
+
+With more time as well, I would employ Shiny to visualize this data set on a web app directly from R. Doing so would make this analysis more accessible and consumable for other fans of Lana Del Rey. My biggest takeaway from the final project is that there are many tools available to carry out a successful text analysis. Tidytext and diplyr to scrape and frame the data, R to conduct the statistical analysis, and a visualization tool like Shiny to convert that to an interactive platform. At the end of this project, I have a better idea of the ecosystem and will likely explore these together in the near future.
